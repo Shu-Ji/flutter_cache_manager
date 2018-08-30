@@ -25,14 +25,13 @@ class CacheManager {
   static CacheManager _instance;
 
   static Future<CacheManager> getInstance() async {
-    if (_instance == null) {
       await _lock.synchronized(() async {
         if (_instance == null) {
           _instance = CacheManager._();
           await _instance._init();
         }
       });
-    }
+    
     return _instance;
   }
 
